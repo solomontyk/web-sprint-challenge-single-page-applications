@@ -40,7 +40,7 @@ const emptyErrors = {
     pepperoni: '',
 }
 
-function pizzaForm() {
+function PizzaForm() {
     const [pizzaOrder, setPizzaOrder] = useState(initialPizzaOrder)
     const [formValues, setFormValues] = useState(initialFormValues)
     const [validName, setValidName] = useState(true)
@@ -56,7 +56,7 @@ function pizzaForm() {
         })
         setFormValues(initialFormValues)
     }
-}
+
 
 const [newPizza, setNewPizza] = useState([]);
 
@@ -226,8 +226,8 @@ return (
             <button className="submit" id="order-button">submit</button>
         </form>
 
-        </div>
+      </div>
 
 )
-
-export default Form;
+}
+export default PizzaForm;
