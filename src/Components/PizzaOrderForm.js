@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import * as yup from 'yup';
 
+
+
 const initialFormValues = {
     name:'',
     size:'',
@@ -12,6 +14,8 @@ const initialFormValues = {
     peppers: false,
     jalepeno: false,
     pepperoni: false,
+
+   
 }
 
 const initialPizzaOrder = []
@@ -61,6 +65,7 @@ function PizzaForm() {
 const [newPizza, setNewPizza] = useState([]);
 
 const handleSubmit = (evt) => {
+    console.log(emptyFormValues)
     axios
     .post('https://reqres.in/api/orders', formValues)
     .then(
@@ -74,7 +79,7 @@ const  formSchema = yup.object().shape({
     name: yup
     .string()
         .trim()
-        .min(2, 'name must be at last 2 characters'),
+        .min(2, 'name must be at least 2 characters'),
         size: yup
         .string()
         .oneOf(['Small', 'Medium', 'Large'], 'Select a size'),
@@ -140,6 +145,7 @@ useEffect(() => {
     formSchema.isValid(formValues).then((valid) => {});
 }, [formValues]);
 
+   
 return (
     <div>
         <h3>Build Your Own Pizza!</h3>
@@ -148,6 +154,8 @@ return (
         submit={handleSubmit}
         change={handleChange}
         >
+             
+
             <label>
                 Name:
                 <input 
@@ -172,6 +180,7 @@ return (
         
         </label>
 
+
         <h3>Add Toppings</h3>
         <label>Cheese
             <input
@@ -184,7 +193,7 @@ return (
             <label> Pepperoni
             <input
             type='checkbox'
-            name='cheese'
+            name='pepperoni'
             checked={formValues.pepperoni}
             onChange={onChange}
             />
@@ -192,7 +201,7 @@ return (
             <label>Peppers
             <input
             type='checkbox'
-            name='cheese'
+            name='peppers'
             checked={formValues.peppers}
             onChange={onChange}
             />
@@ -200,7 +209,7 @@ return (
             <label>Jalepeno
             <input
             type='checkbox'
-            name='cheese'
+            name='jalepeno'
             checked={formValues.jalepeno}
             onChange={onChange}
             />
@@ -208,7 +217,7 @@ return (
             <label>Mushrooms
             <input
             type='checkbox'
-            name='cheese'
+            name='mushroom'
             checked={formValues.mushrooms}
             onChange={onChange}
             />
